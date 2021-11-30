@@ -14,6 +14,9 @@ public class PlayerBehaviour : MonoBehaviour
     public Vector2 maxVelocity;
     [Range(0.0f, 1.0f)] public float airMoveFactor = 0.5f;
 
+    [Header("Effects")]
+    public ParticleSystem dustTrail;
+
     [Header("Ground")]
     public bool isGrounded;
     public Transform groundOrigin;
@@ -35,6 +38,11 @@ public class PlayerBehaviour : MonoBehaviour
     {
         Move();
         CheckIfGrounded();
+
+        if (isGrounded && rigidbody.velocity.sqrMagnitude > 0.1f)
+            dustTrail.Play();
+        else if ((!isGrounded || rigidbody.velocity.sqrMagnitude < 0.1f))
+            dustTrail.Stop();
     }
 
     private void Move()

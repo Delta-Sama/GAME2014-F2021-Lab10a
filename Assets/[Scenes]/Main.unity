@@ -494,7 +494,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294965759
+    m_Bits: 4294965503
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 7a9e94cd788fad04096d6561cb7e132e, type: 2}
   m_TargetDisplay: 0
@@ -110837,17 +110837,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7008979413388881121, guid: e7d3b50ce0c930c45a2a8e02a3b20b22, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 7008979413516753634, guid: e7d3b50ce0c930c45a2a8e02a3b20b22, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7008979413516753634, guid: e7d3b50ce0c930c45a2a8e02a3b20b22, type: 3}
-      propertyPath: m_Layer
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7008979413516753657, guid: e7d3b50ce0c930c45a2a8e02a3b20b22, type: 3}
       propertyPath: joystick

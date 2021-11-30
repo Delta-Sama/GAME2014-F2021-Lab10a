@@ -19,6 +19,7 @@ public class MinimapIconController : MonoBehaviour
     public void SetTarget(GameObject Target, MinimapEntityEnum enemyType)
     {
         target = Target.transform;
+        transform.parent = Target.transform;
 
         switch (enemyType)
         {
@@ -38,7 +39,6 @@ public class MinimapIconController : MonoBehaviour
     void Update()
     {
         transform.position = target.position;
-        transform.localScale = new Vector3(Mathf.Sign(target.localScale.x) * Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
     }
 }
 
