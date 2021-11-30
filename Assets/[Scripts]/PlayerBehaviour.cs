@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -16,6 +17,12 @@ public class PlayerBehaviour : MonoBehaviour
 
     [Header("Effects")]
     public ParticleSystem dustTrail;
+    public CinemachineVirtualCamera virtualCamera;
+    public CinemachineBasicMultiChannelPerlin perlin;
+    public float shakeIntensity;
+    public float maxShakeTime;
+    public float shakeTimer;
+    public bool isCameraShaking;
 
     [Header("Ground")]
     public bool isGrounded;
@@ -31,6 +38,8 @@ public class PlayerBehaviour : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody2D>();
         animationControler = GetComponent<Animator>();
+
+        perlin = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
     // Update is called once per frame
@@ -43,6 +52,24 @@ public class PlayerBehaviour : MonoBehaviour
             dustTrail.Play();
         else if ((!isGrounded || rigidbody.velocity.sqrMagnitude < 0.1f))
             dustTrail.Stop();
+
+        if (isCameraShaking)
+        {
+            shakeTimer -= Time.deltaTime;
+
+            if (shakeTimer <= 0.0f)
+            {
+                perlin.m_AmplitudeGain = 0.0f;
+                shakeTimer = maxShakeTime;
+                isCameraShaking = false;
+            }
+        }
+    }
+
+    private void ShakeCamera()
+    {
+        perlin.m_AmplitudeGain = shakeIntensity;
+        isCameraShaking = true;
     }
 
     private void Move()
@@ -92,6 +119,11 @@ public class PlayerBehaviour : MonoBehaviour
     private void CheckIfGrounded()
     {
         RaycastHit2D hit = Physics2D.CircleCast(groundOrigin.position, groundRadius, Vector2.down, groundRadius, groundLayerMask);
+
+        if (!isGrounded && hit)
+        {
+            ShakeCamera();
+        }
 
         isGrounded = (hit) ? true : false;
     }

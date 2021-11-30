@@ -153,7 +153,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: ca.GeorgeBrownCollege.GAME2014F2021Lab8
+    Android: com.GeorgeBrownCollege.GAME2014F2021Lab10
     Lumin: com.DefaultCompany.com.unity.template.mobile2D
     Standalone: ca.GeorgeBrownCollege.GAME2014-F2021-Lab6
     iPhone: com.DefaultCompany.com.unity.template.mobile2D
